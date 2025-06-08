@@ -48,11 +48,11 @@ public class Note {
 
     @Override
     public String toString() {
-        return "Note{" +
-                "id=" + id +
-                ", text='" + text + '\'' +
-                ", owner='" + owner + '\'' +
-                ", publicNote=" + publicNote +
+        return "{" +
+                "id:" + id +
+                ", text:'" + text + '\'' +
+                ", owner:'" + owner + '\'' +
+                ", publicNote:" + publicNote +
                 '}';
     }
 }

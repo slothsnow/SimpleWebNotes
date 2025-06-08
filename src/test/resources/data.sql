@@ -1,0 +1,1 @@
+INSERT INTO note(ID, TEXT, OWNER, PUBLIC_NOTE) VALUES (15, 'This is just an example.', 'exampleUser', true);
