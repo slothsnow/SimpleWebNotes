@@ -6,10 +6,12 @@ public class Note {
     private @Id Number id;
     private String text;
     private String owner;
+    private boolean publicNote;
 
-    public Note(String text, String owner) {
+    public Note(String text, String owner, boolean publicNote) {
         this.text = text;
         this.owner = owner;
+        this.publicNote = publicNote;
     }
 
     public String getText() {
@@ -36,12 +38,21 @@ public class Note {
         this.owner = owner;
     }
 
+    public boolean isPublicNote() {
+        return publicNote;
+    }
+
+    public void setPublicNote(boolean publicNote) {
+        this.publicNote = publicNote;
+    }
+
     @Override
     public String toString() {
         return "Note{" +
                 "id=" + id +
                 ", text='" + text + '\'' +
                 ", owner='" + owner + '\'' +
+                ", publicNote=" + publicNote +
                 '}';
     }
 }
