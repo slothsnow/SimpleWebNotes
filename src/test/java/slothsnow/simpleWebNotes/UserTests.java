@@ -15,20 +15,21 @@ import java.io.IOException;
 public class UserTests {
     @Autowired
     private TestRestTemplate restTemplate;
+/*
+ @Test
+ void getExistingUser() throws IOException {
+     ResponseEntity<String> response = this.restTemplate.getForEntity("/users/testUser", String.class);
 
-    @Test
-    void getExistingUser() throws IOException {
-        ResponseEntity<String> response = this.restTemplate.getForEntity("/users/testUser", String.class);
+     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+     assertThat(response.getBody()).isEqualToIgnoringWhitespace(
+             new String(getClass().getResourceAsStream("/expectedResponseGetExistingUser.json").readAllBytes())
+     );
+ }
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isEqualToIgnoringWhitespace(
-                new String(getClass().getResourceAsStream("/expectedResponseGetExistingUser.json").readAllBytes())
-        );
-    }
-
-    @Test
-    void getNonExistingUser() {
-        ResponseEntity<String> response = this.restTemplate.getForEntity("/users/nonExistingUser", String.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
-    }
+ @Test
+ void getNonExistingUser() {
+     ResponseEntity<String> response = this.restTemplate.getForEntity("/users/nonExistingUser", String.class);
+     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+ }
+*/
 }

@@ -1,14 +1,14 @@
 package slothsnow.simpleWebNotes;
 
-import org.springframework.data.web.JsonPath;
+import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.JsonPath;
+import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 @RestController
 @RequestMapping("/note")
@@ -27,4 +27,40 @@ public class NoteController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteNote(@PathVariable Number id) {
+        if (noteRepository.existsById(id)) {
+            noteRepository.deleteById(id);
+        }
+        else {
+            return new ResponseEntity<>("Note not found", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>("{}", HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping
+    public ResponseEntity<Number> createNote(@RequestBody String noteS) {
+        DocumentContext parsedNote = JsonPath.parse(noteS);
+        Note note = new Note(parsedNote.read("$.text"), 
+                        parsedNote.read("$.owner"), 
+                        parsedNote.read("$.publicNote"));
+        Note savedNote = noteRepository.save(note);
+        return new ResponseEntity<>(savedNote.getId(), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateNote(@PathVariable Number id, @RequestBody String noteS) {
+        DocumentContext parsedNote = JsonPath.parse(noteS);
+        if (noteRepository.existsById(id)) {
+            Note note = new Note(parsedNote.read("$.text"),
+                parsedNote.read("$.owner"),
+                parsedNote.read("$.publicNote"));
+        note.setId(id);
+        noteRepository.save(note);
+    }
+    else {
+        return new ResponseEntity<>("Note not found", HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity<>("{}", HttpStatus.OK);
+}
 }

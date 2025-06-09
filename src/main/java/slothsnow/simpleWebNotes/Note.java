@@ -27,7 +27,7 @@ public class Note {
     }
 
     public void setId(Number id) {
-        throw new UnsupportedOperationException("Cannot set ID of note");
+        this.id = id;
     }
 
     public void setText(String text) {
