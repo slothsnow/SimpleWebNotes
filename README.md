@@ -11,5 +11,5 @@ What needs to be done, to publish the first stable version:
 
 (✅) Basic operations  
 (⌛) Users (login etc.)  
-() Protect the notes and prevent spam by forcing users to be logged in  
-() Real UI  
+(  )   Protect the notes and prevent spam by forcing users to be logged in  
+(  )   Real UI  
